@@ -33,7 +33,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             return data
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+class UserForgotPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(required=True, write_only=True)
+    password_confirm = serializers.CharField(required=True, write_only=True)
+
+    def validate(self, data):
+        if data["password"] != data["password_confirm"]:
+            raise serializers.ValidationError("Passwords must match")
+        else:
+            return data
