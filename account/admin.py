@@ -9,7 +9,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserUpdateForm
     add_form = UserCreationForm
 
-    list_display = ('email', 'phone_number', 'is_admin')
+    list_display = ('phone_number', 'first_name', 'last_name', 'is_admin')
     list_filter = ('is_admin',)
     readonly_fields = ('last_login',)
 
