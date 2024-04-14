@@ -1,2 +1,2 @@
-# Courza
+# Academy
 Course shop with DRF
