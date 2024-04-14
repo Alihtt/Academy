@@ -87,6 +87,7 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
+CACHE_TTL = 120
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -135,4 +136,12 @@ REST_FRAMEWORK = {
     )
 }
 
-CACHE_TTL = 120
+PHONE_NUMBER_REGEX = r"^(09(0[1-5]|1[0-9]|2[0-9]|3[0-9]|4[12]|9[0-4]|34|91|00|90|92|93|94|95|96|97|98|99))[0-9]{7}$"
+
+SMS_API = 'https://sms.segalnet.net/send_via_get/send_sms.php?username=bonit_ad&password=5dbbef18256a11eebe560242ac120002&sender_number=9890006740&receiver_number={receiver_number}&note={note}'
+SMS_TEXT = '''
+آکادمی
+code:{code}
+لطفا کد را در اختیار دیگران قرار ندهید
+لغو 11
+'''

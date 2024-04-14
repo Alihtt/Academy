@@ -19,7 +19,7 @@ class RegisterUserSendCode(GenericAPIView):
             random_code = randint(10000, 99999)
             cache.set(ser_data.data['phone_number'], random_code, timeout=settings.CACHE_TTL)
             send_otp_task.delay(ser_data.data['phone_number'], random_code)
-            return Response({'success': f'expire time: {settings.CACHE_TTL}s'},
+            return Response({'message': f'کد ورود ارسال شد'},
                             status=status.HTTP_200_OK)
         return Response(ser_data.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -40,5 +40,5 @@ class RegisterUserSendCodeDone(GenericAPIView):
                     'access': str(refresh.access_token)
                 }, status=status.HTTP_201_CREATED)
             else:
-                return Response({'error': 'code does not match'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'message': 'کد ورود صحیح نمیباشد'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         return Response(ser_data.errors, status=status.HTTP_400_BAD_REQUEST)
