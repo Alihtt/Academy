@@ -24,6 +24,12 @@ class UserRegisterSendCodeDoneSerializer(BaseUserRegisterSendCodeSerializer):
     code = serializers.IntegerField(required=True)
 
     def validate_code(self, data):
-        if len(data) != 5:
-            raise serializers.ValidationError('کد شما باید ۵ رقمی باشد')
+        if len(str(data)) != 6:
+            raise serializers.ValidationError('کد شما باید 6 رقمی باشد')
         return data
+
+
+class UserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'status', 'is_admin')

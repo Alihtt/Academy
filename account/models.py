@@ -11,6 +11,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
     is_admin = models.BooleanField(default=False, verbose_name='ادمین')
     password = models.CharField(max_length=128, null=True, blank=True)
+    status = models.PositiveSmallIntegerField(verbose_name='وضعیت', default=1)
 
     objects = UserManager()
 

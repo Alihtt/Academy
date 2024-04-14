@@ -12,7 +12,7 @@ def validate_phone_number(data: str):
 
 def send_otp_code(phone_number, code):
     try:
-        api = settings.SMS_API.format(reciver_number=phone_number, note=settings.SMS_TEXT.format(code=code))
+        api = settings.SMS_API.format(receiver_number=phone_number, note=settings.SMS_TEXT.format(code=code))
         response = requests.get(api)
         response_text = response.text
         if not response_text or 'error' in response_text:
