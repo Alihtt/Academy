@@ -9,12 +9,6 @@ class BaseUserRegisterSendCodeSerializer(serializers.Serializer):
     class Meta:
         abstract = True
 
-    def validate(self, data):
-        user = User.objects.filter(phone_number=data["phone_number"]).exists()
-        if user:
-            raise serializers.ValidationError('کاربر با این شماره تلفن ثبت نام شده است')
-        return data
-
 
 class UserRegisterSendCodeSerializer(BaseUserRegisterSendCodeSerializer):
     pass

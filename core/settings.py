@@ -87,7 +87,7 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
-CACHE_TTL = 120
+CACHE_TTL = 90
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

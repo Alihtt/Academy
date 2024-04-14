@@ -38,7 +38,9 @@ class RegisterUserSendCodeDone(GenericAPIView):
             phone_number = ser_data.data['phone_number']
             random_code = cache.get(phone_number)
             if random_code == ser_data.data['code']:
-                user = User.objects.create_user(phone_number=phone_number)
+                user = User.objects.get(phone_number=phone_number)
+                if not user:
+                    user = User.objects.create_user(phone_number=phone_number)
                 refresh = RefreshToken.for_user(user)
                 user_ser_data = self.user_serializer_class(instance=user)
                 return Response({
