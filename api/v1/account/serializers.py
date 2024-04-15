@@ -3,18 +3,18 @@ from account.models import User
 from api.utils import validate_phone_number
 
 
-class BaseUserRegisterSendCodeSerializer(serializers.Serializer):
+class BaseLoginSerializer(serializers.Serializer):
     phone_number = serializers.CharField(required=True, validators=[validate_phone_number])
 
     class Meta:
         abstract = True
 
 
-class UserRegisterSendCodeSerializer(BaseUserRegisterSendCodeSerializer):
+class LoginSerializer(BaseLoginSerializer):
     pass
 
 
-class UserRegisterSendCodeDoneSerializer(BaseUserRegisterSendCodeSerializer):
+class LoginVerifySerializer(BaseLoginSerializer):
     code = serializers.IntegerField(required=True)
 
     def validate_code(self, data):

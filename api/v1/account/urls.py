@@ -1,10 +1,10 @@
 from django.urls import path
-from .apis import RegisterUserSendCode, RegisterUserSendCodeDone
+from .apis import Login, LoginVerify
 
 app_name = 'account'
 
 urlpatterns = [
-    path('', RegisterUserSendCode.as_view(), name='register'),
-    path('verify/', RegisterUserSendCodeDone.as_view(), name='register-verify'),
+    path('', Login.as_view(), name='register'),
+    path('verify/', LoginVerify.as_view(), name='register-verify'),
 
 ]
