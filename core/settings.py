@@ -125,6 +125,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -145,3 +149,12 @@ SMS_TEXT = '''آکادمی
 code:{code}
 لطفا کد را در اختیار دیگران قرار ندهید
 لغو 11'''
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+AWS_ACCESS_KEY_ID = 'ce789507-8073-4f7b-b239-522e50b136d0'
+AWS_SECRET_ACCESS_KEY = 'ab9c73fe3b21f9b87ee335ff625d93bc75383e027aee6ee7712d49fa9593cda4'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
+AWS_STORAGE_BUCKET_NAME = 'alihtt-academy'
+AWS_S3_FILE_OVERWRITE = False
+AWS_SERVICE_NAME = 's3'
+AWS_LOCAL_STORAGE = f'{BASE_DIR}/aws/'
