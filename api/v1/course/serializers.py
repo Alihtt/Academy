@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from course.models import Course, Category
+from course.models import Course, Category, Author
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -16,7 +22,7 @@ class CourseSerializer(serializers.ModelSerializer):
         raise serializers.ValidationError({'message': 'You must be author'})
 
 
-class SubCategorySerializer(serializers.ModelSerializer):
+class ChildCategorySerializer(serializers.ModelSerializer):
     course = serializers.SerializerMethodField()
 
     class Meta:
@@ -25,22 +31,17 @@ class SubCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_course(self, obj):
-        courses = obj.ccourse.all()
+        courses = obj.courses.all()
         return CourseSerializer(courses, many=True).data
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    sub_category = serializers.SerializerMethodField()
-    course = serializers.SerializerMethodField()
+class ParentCategorySerializer(serializers.ModelSerializer):
+    child_category = serializers.SerializerMethodField()
 
     class Meta:
         model = Category
         fields = '__all__'
 
-    def get_sub_category(self, obj):
-        categories = obj.scategory.all()
-        return SubCategorySerializer(categories, many=True).data
-
-    def get_course(self, obj):
-        courses = obj.ccourse.all()
-        return CourseSerializer(courses, many=True).data
+    def get_child_category(self, obj):
+        categories = obj.categories.all()
+        return ChildCategorySerializer(categories, many=True).data

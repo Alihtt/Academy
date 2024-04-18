@@ -9,12 +9,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserUpdateForm
     add_form = UserCreationForm
 
-    list_display = ('phone_number', 'first_name', 'last_name', 'is_admin')
+    list_display = ('phone_number', 'first_name', 'last_name', 'is_admin', 'status')
     list_filter = ('is_admin',)
     readonly_fields = ('last_login',)
 
     fieldsets = (
-        ('Main', {'fields': ('email', 'phone_number', 'first_name', 'last_name', 'password')}),
+        ('Main', {'fields': ('email', 'phone_number', 'first_name', 'last_name', 'password', 'status')}),
         ('Permissions', {'fields': ('is_active', 'is_admin',
                                     'is_superuser', 'last_login', 'groups', 'user_permissions')}),
     )
